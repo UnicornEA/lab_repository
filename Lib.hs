@@ -119,6 +119,18 @@ powersOfTwo n = reverse (pOfTwo n)
 --countPositivesSumNegatives :: [Int] -> [Int]
 --countPositivesSumNegatives = error "todo: countPositivesSumNegatives"
 
+sumNegative [] = 0
+sumNegative (x:xs) =  if x < 0
+              then x + (sumNegative xs)
+              else sumNegative xs
+countEven [] = 0
+countEven (x:xs) = if x> 0 
+               then 1+countEven xs
+               else countEven xs
+
+countEvensumNegative (x:xs) = [countEven (x:xs), sumNegative (x:xs)]
+
+
 
 
 -- | Реализовать фунцкию, которая для неотрицательного числа возвращает его цифры в массиве в обратном порядке
