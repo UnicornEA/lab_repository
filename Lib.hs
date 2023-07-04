@@ -14,6 +14,23 @@ module Lib where
 highAndLow :: String -> String
 highAndLow = error "todo: highAndLow"
 
+mymax (x:xs) = foldr max x xs
+  where max a b | a > b = a
+                | otherwise = b
+
+mymin (x:xs) = foldr min x xs
+  where min a b | a < b = a
+                | otherwise = b
+
+
+toStr aList = unwords ( map show( aList)) :: String
+toInt aList = map read (words aList) :: [Int]
+
+maxAndMin (x:xs) = toStr ([mymax(x:xs), mymin(x:xs)] )
+getMaxAndMin aList= maxAndMin( toInt aList)
+
+
+
 -- | Реализовать функцию, которая берет массив слов, объединяет их в предложение и возвращает предложение.
 --
 -- * Можно игнорировать любую необходимость очистки слов или добавления знаков препинания, но необходимо добавить пробелы между каждыми словами.
