@@ -29,8 +29,6 @@ toInt aList = map read (words aList) :: [Int]
 maxAndMin (x:xs) = toStr ([mymax(x:xs), mymin(x:xs)] )
 getMaxAndMin aList= maxAndMin( toInt aList)
 
-
-
 -- | Реализовать функцию, которая берет массив слов, объединяет их в предложение и возвращает предложение.
 --
 -- * Можно игнорировать любую необходимость очистки слов или добавления знаков препинания, но необходимо добавить пробелы между каждыми словами.
@@ -145,6 +143,7 @@ countEven (x:xs) = if x> 0
                then 1+countEven xs
                else countEven xs
 
+
 countEvensumNegative (x:xs) = [countEven (x:xs), sumNegative (x:xs)]
 
 
@@ -159,6 +158,9 @@ countEvensumNegative (x:xs) = [countEven (x:xs), sumNegative (x:xs)]
 --digitize = error "todo: digitize"
 
 
+
+
+
 -- | Реализовать функцию, которая для положительного числа вернет количество его делителей.
 --
 -- * Число, подаваемое на вход функции не превосходит @500000@
@@ -169,8 +171,11 @@ countEvensumNegative (x:xs) = [countEven (x:xs), sumNegative (x:xs)]
 -- prop> divisors 5  = 2 -- 1, 5
 -- prop> divisors 12 = 6 -- 1, 2, 3, 4, 6, 12
 -- prop> divisors 30 = 8 -- 1, 2, 3, 5, 6, 10, 15, 30
-divisors :: Int -> Int
-divisors = error "todo: divisors"
+--divisors :: Int -> Int
+--divisors = error "todo: divisors"
+
+divisors n = length (listMod n)
+listMod n = filter (\x -> n `mod` x == 0)[1..n]
 
 -- | Реализовать функцию, которая для заданного массива и граничного значения проверяет, что все элементы массива не превосходят граничное значение.
 --
@@ -184,8 +189,18 @@ divisors = error "todo: divisors"
 -- prop> smallEnough [78, 33, 22, 44, 88, 9, 6] 87                       = False
 -- prop> smallEnough [1, 2, 3, 4, 5, 6, 7, 8, 9] 10                      = True
 -- prop> smallEnough [12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12] 12 = True
-smallEnough :: [Int] -> Int -> Bool
-smallEnough = error "todo: smallEnough"
+--smallEnough :: [Int] -> Int -> Bool
+--smallEnough = error "todo: smallEnough"
+
+lenghtList (x:xs) = length (x:xs)
+listTrue [] _ = 0
+listTrue (x:xs) n = if x <= n 
+                then 1+listTrue xs n
+                else listTrue xs n
+
+smallEnough (x:xs) n = if lenghtList (x:xs) == listTrue (x:xs) n
+                       then True
+                       else False
 
 -- | Реализовать функцию, которая для двух заданых чисел @a@ и @b@ и операции возвращает результат операции для двух чисел.
 --
